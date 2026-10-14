@@ -1,0 +1,407 @@
+[
+  {
+    "slug": "mapleplanet",
+    "name": "플래닛컴페어",
+    "category": "MaplePlanet 게임 장비 비교 서비스",
+    "featured": true,
+    "summary": "MaplePlanet 장비 비교의 어려움을 계산 API로 해결하고, 기획부터 배포·운영까지 혼자 담당했습니다.",
+    "period": "2026.05 · 1개월 개발",
+    "team": "1인 개발",
+    "role": "기획 · 백엔드 · 프론트엔드 · 운영",
+    "status": "운영 종료",
+    "operation": "2026.05.21 — 2026.08.24 · 96일",
+    "highlight": "16,040 MAU",
+    "highlightLabel": "2026년 6월 MAU",
+    "stack": [
+      "Java 21",
+      "Spring Boot",
+      "JPA",
+      "MySQL",
+      "Caffeine",
+      "AWS EC2",
+      "Docker",
+      "React"
+    ],
+    "cover": "maple-screen.png",
+    "coverAlt": "MaplePlanet 캐릭터 스탯 입력과 장비별 데미지 비교 화면",
+    "overview": "게임 메이플플래닛에서 어떤 장비가 더 강한지 판단하기 어려운 문제를 해결했습니다. 캐릭터와 아이템 정보를 입력받아 게임 수식으로 공격력과 실질 데미지를 계산하고, 장비 교체에 따른 차이를 수치로 비교했습니다.",
+    "contributions": [
+      "Spring Boot·JPA 기반 계산 API와 프리셋·문의·분석 기능을 도메인별로 분리했습니다.",
+      "장비별 무기 타입과 공격력 합산 순서를 반영하고 계산 회귀 테스트를 추가했습니다.",
+      "입력값 검증, 전역 예외 처리, Caffeine 기반 요청 제한으로 입력 오류와 비정상 요청에 대응했습니다.",
+      "로컬 H2와 운영 MySQL의 프로필·환경변수를 분리하고 Docker·AWS EC2 배포 및 운영을 담당했습니다."
+    ],
+    "boundary": "기획, 아키텍처, 프론트엔드, 백엔드, 데이터베이스와 배포 환경을 모두 직접 담당했습니다.",
+    "architecture": {
+      "image": "maple-architecture.png",
+      "alt": "플래닛컴페어 서비스 아키텍처 구성도",
+      "description": "React는 입력과 결과 화면을 담당하도록 구성했습니다. Spring Boot에서 검증·요청 제한·계산을 처리하고, JPA와 환경별 데이터베이스 설정을 분리했습니다.",
+      "flow": [
+        "React · 입력",
+        "Spring Boot · 검증·계산",
+        "JPA · MySQL"
+      ]
+    },
+    "challenges": [
+      {
+        "title": "서로 다른 무기의 비교 결과를 바로잡았습니다.",
+        "tag": "계산 정확성 · 회귀 테스트",
+        "problem": "서로 다른 무기를 비교할 때 두 장비에 같은 무기 상수를 적용하는 문제를 확인했습니다. 비교 장비의 무기 공격력과 장비 공격력 합산 방식도 결과에 영향을 주는 것으로 파악했습니다.",
+        "solution": "비교 장비의 무기 타입을 별도로 받도록 확장하고 각 장비에 해당하는 상수를 적용했습니다. 무기·장비 공격력을 분리해 합산한 뒤 공격력 비율을 적용하도록 계산 순서를 정리했습니다.",
+        "result": "서로 다른 무기를 비교할 수 있도록 수정했습니다. 물리 데미지와 석궁 상수 테스트를 추가해 결과가 달라지는 입력 조건을 회귀 테스트로 검증했습니다.",
+        "links": [
+          {
+            "label": "계산 수정·회귀 테스트 커밋",
+            "url": "https://github.com/MaplePlanet-Support/MaplePlanet_Spring/commit/c8dcca3b2b34d1852c5413c71fe776dcbaf2d7b1"
+          }
+        ]
+      },
+      {
+        "title": "디스크가 가득 찬 상황에서 로그를 먼저 보존했습니다.",
+        "tag": "운영 장애 대응",
+        "problem": "EC2 디스크 사용량이 100%가 되어 백엔드와 DB가 정상 동작하지 않는 상황을 확인했습니다. 파일 생성도 실패해 서버 내부에서 로그 백업을 진행할 수 없는 상태로 판단했습니다.",
+        "solution": "SSH를 통해 Docker 로그 출력을 로컬 PC 파일에 직접 저장했습니다. EC2에 새 파일을 만들지 않고 로그를 보존한 뒤 로그와 미사용 Docker 리소스를 정리했습니다.",
+        "result": "로그를 백업하고 약 5GB의 저장 공간을 확보했습니다. 이후 AWS 프리티어 종료에 따라 운영을 종료했습니다.",
+        "links": []
+      }
+    ],
+    "results": [
+      "96일간 운영하며 누적 고유 방문자 35,261명, 일평균 DAU 733명, 최고 DAU 1,265명을 기록했습니다.",
+      "2026년 6월 MAU 16,040명을 기록했습니다. 운영 초기 30일에는 고유 방문자 15,610명과 평균 DAU 930명을 기록했습니다."
+    ],
+    "resultNote": "",
+    "gallery": [
+      {
+      "image": "maple-screen.png",
+        "caption": "캐릭터 정보 입력과 장비 비교 결과"
+      },
+      {
+        "image": "maple-guide.png",
+        "caption": "플래닛컴페어 사용 가이드"
+      },
+      {
+        "image": "maple-record.png",
+        "caption": "AP 재분배 시뮬레이터 적용 전·후 비교"
+      }
+    ],
+    "links": [
+      {
+        "label": "백엔드 저장소",
+        "url": "https://github.com/MaplePlanet-Support/MaplePlanet_Spring"
+      },
+      {
+        "label": "프론트엔드 저장소",
+        "url": "https://github.com/MaplePlanet-Support/MaplePlanet_Frontend"
+      }
+    ]
+  },
+  {
+    "slug": "filly",
+    "name": "FILLY",
+    "category": "AI 일기 생성 · 감정 분석",
+    "featured": true,
+    "summary": "AI 일기 생성·분석을 분리하고, 추천 카드의 동시 상태 변경을 트랜잭션 안에서 제어했습니다.",
+    "period": "2026.03 — 2026.06",
+    "team": "4인 · 백엔드 2 / 프론트엔드 2",
+    "role": "AI 백엔드 · 미디어·추천 API",
+    "status": "개발 완료",
+    "operation": "시연 영상 제공",
+    "highlight": "작품우수상",
+    "highlightLabel": "2026-1 한성대학교 캡스톤디자인 · 팀 수상",
+    "stack": [
+      "Java 21",
+      "Spring Boot",
+      "Spring AI",
+      "JPA",
+      "MySQL",
+      "Gemini API",
+      "Google Cloud Storage"
+    ],
+    "cover": "filly-main-final.png",
+    "coverAlt": "FILLY 일기 달력에서 날짜별 감정을 표시한 서비스 화면",
+    "overview": "짧은 문장과 이미지·음성으로 하루를 기록하는 AI 일기 서비스를 개발했습니다. Gemini 기반 초안 생성과 감정 분석, 페르소나·아바타 생성, 개인화 추천을 연결했습니다.",
+    "contributions": [
+      "Gemini 멀티모달 일기 생성·분석과 프롬프트를 구현하고 페르소나 갱신·아바타 생성·개인화 추천 기능을 개발했습니다.",
+      "추천 카드 생성·공개·재추첨 API와 비관적 락, 활성 추천 세션 재사용을 구현했습니다.",
+      "일기·미디어 추가·수정·삭제, GCS 파일 관리, 사용자 소유권 검증과 아카이브 기능을 구현했습니다.",
+      "초안용·분석용 AI 클라이언트와 DTO를 분리하고 V2 호출 경로와 관련 테스트를 변경했습니다."
+    ],
+    "boundary": "AI 연동과 일기 분석·추천·미디어 API를 담당했습니다. 클라우드 인프라·배포와 최초 비동기 처리 구조는 팀원이 구현했습니다.",
+    "architecture": {
+      "image": "filly-architecture-original.png",
+      "alt": "FILLY 백엔드와 AI·미디어 연동 구성도",
+      "description": "Spring Boot REST API와 MySQL을 중심으로 GCS 미디어 관리, Spring AI·Gemini 연동을 구성했습니다.",
+      "flow": [
+        "일기 초안 생성",
+        "일기 저장",
+        "저장 후 비동기 분석"
+      ]
+    },
+    "challenges": [
+      {
+        "title": "잠금 이후에 제한을 검사하도록 순서를 바꿨습니다.",
+        "tag": "동시성 · 트랜잭션",
+        "problem": "추천 공개와 재추첨이 같은 세션 상태를 변경하는 구조를 확인했습니다. 잠금 전에 일일 제한을 검사하면 동시 요청이 함께 제한을 통과할 가능성이 있다고 판단했습니다.",
+        "solution": "공개 요청에는 세션 비관적 쓰기 잠금을 적용했습니다. 재추첨은 사용자 잠금 → 세션 잠금 → 제한·상태 검사 → 상태 변경 순서로 처리하고, 활성 세션이 있으면 재사용하도록 개선했습니다.",
+        "result": "제한 검사와 상태 변경을 같은 트랜잭션에서 제어해 동일한 이전 상태를 기준으로 처리될 위험을 줄였습니다. 기존 세션 재사용으로 중복 AI 생성 요청을 줄이는 구조를 적용했습니다.",
+        "links": [
+          {
+            "label": "동시성 제어 커밋",
+            "url": "https://github.com/hansung-2026-capstone/filly-backend/commit/26d66656e125fcc43ec4a412a8d2d9236c4f1b4a"
+          },
+          {
+            "label": "기존 세션 재사용 커밋",
+            "url": "https://github.com/hansung-2026-capstone/filly-backend/commit/049d5608802cd43afdcf69974d67c27089fe4c3f"
+          }
+        ]
+      },
+      {
+        "title": "초안 생성과 저장 후 분석의 책임을 분리했습니다.",
+        "tag": "AI 호출 설계 · 단위 테스트",
+        "problem": "초안 확인 단계에서도 감정·활동 분석을 생성하고, 저장 후 분석에도 본문 생성을 포함한 범용 AI 호출을 사용하는 중복을 확인했습니다.",
+        "solution": "클라이언트·프롬프트·응답 DTO를 초안용과 분석용으로 분리했습니다. V2 초안 API에서 분석과 이미지 업로드를 제외하고, 저장 후 비동기 경로에는 분석 전용 호출을 연결했습니다.",
+        "result": "초안 단계에서는 본문만 생성하고 저장 후에는 분석만 수행하도록 변경했습니다. 초안 텍스트 반환, 분석 결과 제외, 이미지 저장 미호출을 단위 테스트로 확인했습니다.",
+        "links": [
+          {
+            "label": "AI 호출 분리 커밋",
+            "url": "https://github.com/hansung-2026-capstone/filly-backend/commit/9ff02145c6a33a6c41542603d5f060d0adc3b9ec"
+          },
+          {
+            "label": "초안 API 변경 커밋",
+            "url": "https://github.com/hansung-2026-capstone/filly-backend/commit/76090ed2f6a7604ccf2ee38e92cbd05a6d0ee380"
+          },
+          {
+            "label": "검증 테스트 커밋",
+            "url": "https://github.com/hansung-2026-capstone/filly-backend/commit/37877662c65c5dd2f5fbdb3735b8f4660eee0e8f"
+          }
+        ]
+      },
+      {
+        "title": "멀티모달 AI 연동 구조를 통합했습니다.",
+        "tag": "아키텍처 · 트레이드오프",
+        "problem": "개인정보 전달 범위를 줄이기 위해 BLIP 이미지 분석과 Google STT를 각각 호출했으나, 비용·처리 시간·연동 복잡도가 추가되는 점을 확인했습니다.",
+        "solution": "개인정보 처리 범위와 비용·응답 시간의 트레이드오프를 검토한 뒤 Gemini 멀티모달 API로 통합하고 개별 서비스 의존성을 제거했습니다.",
+        "result": "AI 입력 처리와 프롬프트를 변경해 연동 구조를 단순화했습니다. 원본 멀티모달 데이터를 Gemini에 전달하는 개인정보 처리상의 차이를 수용했습니다.",
+        "links": []
+      }
+    ],
+    "results": [
+      "AI 일기 생성·분석과 개인화 추천 기능을 구현했습니다.",
+      "팀과 함께 시연 가능한 서비스를 구현했으며 2026학년도 1학기 한성대학교 캡스톤디자인 작품우수상을 수상했습니다."
+    ],
+    "resultNote": "",
+    "gallery": [
+      {
+        "image": "filly-write-final.png",
+        "caption": "일기 작성과 음성 기록"
+      },
+      {
+        "image": "filly-archive-final.png",
+        "caption": "일기 아카이브"
+      },
+      {
+        "image": "filly-stats-final.png",
+        "caption": "월간 감정 통계와 페르소나"
+      },
+      {
+        "image": "filly-content-final.png",
+        "caption": "AI 추천 콘텐츠와 공유 카드"
+      },
+      {
+        "image": "filly-card-final.png",
+        "caption": "FILLY 멤버 카드"
+      }
+    ],
+    "links": [
+      {
+        "label": "백엔드 저장소",
+        "url": "https://github.com/hansung-2026-capstone/filly-backend"
+      },
+      {
+        "label": "서비스 시연 영상",
+        "url": "https://www.youtube.com/watch?v=BMViDPydEdY"
+      }
+    ]
+  },
+  {
+    "slug": "crush",
+    "name": "CRUSH",
+    "category": "LLM 안전성 비교 데모",
+    "featured": false,
+    "summary": "웹·백엔드·추론 서버를 연결하고, 기본 모델과 안전 제어 모델을 비교하는 데모 흐름을 구현했습니다.",
+    "period": "2026.04.08 — 2026.06.05",
+    "team": "3인 팀",
+    "role": "웹 풀스택 · 추론 API 연동 · 배포 구성",
+    "status": "개발 완료",
+    "operation": "시연 영상 제공",
+    "highlight": "우수상",
+    "highlightLabel": "2026-1 한성대학교 캡스톤디자인 · 팀 수상",
+    "stack": [
+      "Java 21",
+      "Spring Boot",
+      "FastAPI",
+      "MySQL",
+      "Docker",
+      "AWS EC2",
+      "Next.js",
+      "PyTorch"
+    ],
+    "cover": "crush-original.png",
+    "coverAlt": "CRUSH 안전성 비교 데모의 소개와 실험 입력 화면",
+    "overview": "LLM 내부 표현의 위험 신호를 바탕으로 응답을 차단하거나 안전한 방향으로 유도하는 데모 서비스를 구현했습니다. 같은 프롬프트에 대한 Baseline과 CRUSH의 응답, 위험 점수·개입 유형·감지 레이어를 비교하도록 구성했습니다.",
+    "contributions": [
+      "Spring Boot 세션·대화 API, FastAPI 연동과 대화·위험 탐지 로그 비동기 저장을 구현했습니다.",
+      "LoRA adapter on/off 기반 비교 추론 API를 구성하고 위험 점수·감지 레이어·개입 유형을 응답 메타데이터로 설계했습니다.",
+      "Next.js 비교 화면·세션 이력·잠재 공간 시각화를 구현하고 UUID 기반 실험 이력 조회를 연결했습니다.",
+      "팀원이 작성한 AI 코드를 로컬에서 학습·실행·연동하고 재현 환경을 공유했습니다. 웹·DB 서버와 GPU 추론 서버를 분리하는 Docker·AWS 배포 구성을 작성했습니다."
+    ],
+    "boundary": "웹 서비스와 AI 코드의 실행·연동 환경을 담당했습니다. AI 모델 코드는 팀원이 작성했습니다.",
+    "architecture": {
+      "image": "crush-architecture.png",
+      "alt": "CRUSH 웹·백엔드·AI 추론 구조",
+      "description": "웹·백엔드·AI 추론 서버를 분리했습니다. 동일 프롬프트의 adapter 비활성·활성 결과를 함께 반환하고 대화와 위험 탐지 로그를 비동기로 저장했습니다.",
+      "flow": [
+        "Next.js · 비교 요청",
+        "Spring Boot / FastAPI",
+        "모델 비교 · 로그 저장"
+      ]
+    },
+    "challenges": [
+      {
+        "title": "로컬 CPU와 클라우드 GPU의 실행 구성을 분리했습니다.",
+        "tag": "모델 실행 환경",
+        "problem": "로컬 CPU와 AWS GPU의 자원 차이 때문에 같은 모델 설정을 사용하기 어렵다고 판단했습니다.",
+        "solution": "MODEL_MODE로 로컬 CPU/FP32와 AWS T4 GPU/4-bit NF4 양자화·자동 device mapping을 구분했습니다. Dockerfile·Compose도 환경별로 분리했습니다.",
+        "result": "로컬 실행과 클라우드 추론을 각각 구성하고 팀원에게 재현 가능한 실행 환경을 공유했습니다.",
+        "links": []
+      },
+      {
+        "title": "긴 비교 추론 요청과 로그 저장 경로를 나눴습니다.",
+        "tag": "요청 처리 · 비동기 저장",
+        "problem": "위험도 계산과 두 모델 추론을 모두 수행하면서 요청이 길어질 수 있음을 확인했습니다.",
+        "solution": "Next.js API route 최대 실행 시간과 요청 timeout을 10분으로 설정했습니다. FastAPI에서 위험도 계산 결과를 재사용하고 Spring에서 응답을 우선 반환한 뒤 로그를 비동기로 저장했습니다.",
+        "result": "긴 비교 요청을 처리할 수 있는 요청 경로와 비동기 로그 저장 흐름을 구현했습니다.",
+        "links": []
+      }
+    ],
+    "results": [
+      "단일 입력으로 두 모델의 응답과 위험 점수·개입 유형·감지 레이어를 비교하도록 구현했습니다.",
+      "로그인 없이 UUID 세션으로 실험 이력을 조회하도록 구현했습니다. 팀으로 2026학년도 1학기 캡스톤디자인 우수상을 수상했습니다."
+    ],
+    "resultNote": "",
+    "gallery": [
+      {
+        "image": "crush-original.png",
+        "caption": "프로젝트 소개와 비교 실험"
+      },
+      {
+        "image": "crush-latent-original.png",
+        "caption": "모델 내부 표현의 잠재 공간 시각화"
+      },
+      {
+        "image": "crush-comparison.png",
+        "caption": "Baseline과 CRUSH 비교 화면"
+      }
+    ],
+    "links": [
+      {
+        "label": "Spring 백엔드",
+        "url": "https://github.com/2026-01-AICapstone/Crush-Spring"
+      },
+      {
+        "label": "AI 서버",
+        "url": "https://github.com/2026-01-AICapstone/Crush-FastAPI"
+      },
+      {
+        "label": "프론트엔드",
+        "url": "https://github.com/2026-01-AICapstone/Crush-Frontend"
+      },
+      {
+        "label": "서비스 시연 영상",
+        "url": "https://youtu.be/LHFs3A2P2ok"
+      }
+    ]
+  },
+  {
+    "slug": "speech-analysis",
+    "name": "성인·아동 음성 분류",
+    "category": "AI 음성 분석 웹 서비스",
+    "featured": false,
+    "summary": "긴 음성을 청크 단위로 추론하고, 결과를 발화 타임라인과 오디오 재생에 연결했습니다.",
+    "period": "2025.09 — 2025.11",
+    "team": "4인 팀",
+    "role": "웹 풀스택 · Python 추론 처리",
+    "status": "개발 완료",
+    "operation": "시연 영상 제공",
+    "highlight": "최우수상",
+    "highlightLabel": "2026학년도 1학기 프리캡스톤",
+    "stack": [
+      "Spring Boot",
+      "Python",
+      "PyTorch",
+      "TorchAudio",
+      "FFmpeg",
+      "React"
+    ],
+    "cover": "speech-classification-3-final.png",
+    "coverAlt": "성인과 아동의 음성 비율, 감정 분석과 발화 타임라인 결과 화면",
+    "overview": "음성을 수작업으로 확인하는 불편을 줄이기 위해 파일 업로드부터 화자 유형 분류·결과 조회까지 웹 서비스로 구현했습니다. 성인·아동·침묵·동시 발화 구간을 구분하고 발화 비율과 타임라인으로 표현했습니다.",
+    "contributions": [
+      "Spring Boot 업로드 제한을 200MB로 조정하고 Python 추론 API 연동 경로를 구성했습니다.",
+      "Python/PyTorch에서 음성 로드, 16kHz 리샘플링·모노 변환, 청크 추론과 결과 후처리를 구현했습니다.",
+      "마지막 청크 패딩과 실제 길이의 프레임 병합으로 긴 음성 처리 흐름을 구현했습니다.",
+      "React 업로드·결과 조회 화면과 타임라인을 구현하고 구간 클릭 시 해당 시점부터 재생하도록 연결했습니다."
+    ],
+    "boundary": "웹 풀스택 구현과 추론 입출력·후처리를 담당했습니다.",
+    "architecture": {
+      "image": "speech-architecture.webp",
+      "alt": "성인·아동 음성 분류 처리 구조",
+      "description": "Spring Boot에서 파일 업로드를 받아 Python 추론 서비스에 연결했습니다. timeline·ratio·durationSec 구조로 결과를 반환해 추론 처리와 화면 시각화를 분리했습니다.",
+      "flow": [
+        "음성 업로드",
+        "16kHz · 청크 추론",
+        "타임라인 · 재생"
+      ]
+    },
+    "challenges": [
+      {
+        "title": "청크 경계와 실제 음성 길이를 맞춰 결과를 병합했습니다.",
+        "tag": "긴 입력 처리 · 후처리",
+        "problem": "모델 입력 길이 제한으로 긴 음성 전체를 한 번에 처리하기 어렵다는 문제를 확인했습니다. 마지막 청크와 패딩 프레임이 실제 오디오 시간과 어긋날 수 있다고 판단했습니다.",
+        "solution": "16kHz 모노 변환 후 청크별로 추론했습니다. 마지막 청크를 패딩하고 실제 길이에 해당하는 프레임만 남겨 전체 결과를 병합했습니다.",
+        "result": "긴 음성의 구간·발화 비율을 반환하고 화면의 30초 단위 타임라인과 오디오 재생 위치에 연결했습니다.",
+        "caveat": "",
+        "links": []
+      }
+    ],
+    "results": [
+      "성인·아동·침묵·동시 발화의 네 상태를 구간 데이터로 반환하도록 구현했습니다.",
+      "서버의 파일 업로드 제한을 200MB로 설정하고 로컬 파일 Object URL로 결과 화면에서 재생하도록 구현했습니다."
+    ],
+    "resultNote": "",
+    "gallery": [
+      {
+        "image": "speech-classification-1-final.png",
+        "caption": "음성 업로드"
+      },
+      {
+        "image": "speech-classification-2-final.png",
+        "caption": "음성 분석 진행"
+      },
+      {
+        "image": "speech-classification-3-final.png",
+        "caption": "성인·아동 음성 분석 결과"
+      }
+    ],
+    "links": [
+      {
+        "label": "프로젝트 저장소",
+        "url": "https://github.com/JAEMO-LIM/precapstone-speech-analysis"
+      },
+      {
+        "label": "서비스 시연 영상",
+        "url": "https://youtu.be/sBdeMmyjjtQ"
+      }
+    ]
+  }
+]

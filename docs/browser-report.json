@@ -1,0 +1,116 @@
+{
+  "base": "http://127.0.0.1:4173/",
+  "records": [
+    {
+      "width": 1440,
+      "page": "home",
+      "status": "passed"
+    },
+    {
+      "width": 1440,
+      "page": "mapleplanet",
+      "status": "passed"
+    },
+    {
+      "width": 1440,
+      "page": "filly",
+      "status": "passed"
+    },
+    {
+      "width": 1440,
+      "page": "crush",
+      "status": "passed"
+    },
+    {
+      "width": 1440,
+      "page": "speech-analysis",
+      "status": "passed"
+    },
+    {
+      "width": 768,
+      "page": "home",
+      "status": "passed"
+    },
+    {
+      "width": 768,
+      "page": "mapleplanet",
+      "status": "passed"
+    },
+    {
+      "width": 768,
+      "page": "filly",
+      "status": "passed"
+    },
+    {
+      "width": 768,
+      "page": "crush",
+      "status": "passed"
+    },
+    {
+      "width": 768,
+      "page": "speech-analysis",
+      "status": "passed"
+    },
+    {
+      "width": 390,
+      "page": "home",
+      "status": "passed"
+    },
+    {
+      "width": 390,
+      "page": "mapleplanet",
+      "status": "passed"
+    },
+    {
+      "width": 390,
+      "page": "filly",
+      "status": "passed"
+    },
+    {
+      "width": 390,
+      "page": "crush",
+      "status": "passed"
+    },
+    {
+      "width": 390,
+      "page": "speech-analysis",
+      "status": "passed"
+    },
+    {
+      "width": 320,
+      "page": "home",
+      "status": "passed"
+    },
+    {
+      "width": 320,
+      "page": "mapleplanet",
+      "status": "passed"
+    },
+    {
+      "width": 320,
+      "page": "filly",
+      "status": "passed"
+    },
+    {
+      "width": 320,
+      "page": "crush",
+      "status": "passed"
+    },
+    {
+      "width": 320,
+      "page": "speech-analysis",
+      "status": "passed"
+    }
+  ],
+  "checks": [
+    "direct URLs and reload",
+    "images loaded",
+    "no horizontal overflow",
+    "modal open / Escape / focus return",
+    "table of contents",
+    "home/detail navigation",
+    "404 status",
+    "no JavaScript content"
+  ],
+  "result": "PASS"
+}

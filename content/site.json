@@ -1,0 +1,104 @@
+{
+  "name": "임재모",
+  "siteName": "플래닛컴페어",
+  "englishName": "JAEMO LIM",
+  "role": "신입 백엔드 개발자",
+  "email": "tjdwkddl@gmail.com",
+  "github": "https://github.com/JAEMO-LIM",
+  "repository": "JAEMO-LIM/jaemo-lim.github.io",
+  "headline": "직접 만들고, 운영하며\n문제를 해결했습니다.",
+  "intro": "게임 장비 비교 서비스를 혼자 개발해 96일간 운영했습니다. 계산의 정확성부터 동시 요청의 정합성, AI 서비스 연동까지 실제 사용 흐름에서 마주한 문제를 해결했습니다.",
+  "about": "사용자가 겪는 불편에서 출발해 서비스로 구현했습니다. 기능을 만드는 데서 멈추지 않고 실제로 작동하는지 확인했으며, 계산 오류는 회귀 테스트로 남기고 운영 장애에서는 로그를 보존했습니다.",
+  "metrics": [
+    {
+      "value": "16,040",
+      "label": "월간 활성 사용자",
+      "detail": "플래닛컴페어 · 2026년 6월 MAU"
+    },
+    {
+      "value": "35,261",
+      "label": "누적 고유 방문자",
+      "detail": "전체 운영 기간"
+    },
+    {
+      "value": "96일",
+      "label": "직접 개발·운영",
+      "detail": "2026.05.21 — 08.24 · 운영 종료"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Backend",
+      "items": [
+        "Java",
+        "Spring Boot",
+        "Spring Data JPA",
+        "Spring Security",
+        "Python",
+        "FastAPI"
+      ],
+      "context": "계산 API, 트랜잭션, AI 추론 연동을 구현했습니다."
+    },
+    {
+      "name": "Data & AI",
+      "items": [
+        "MySQL",
+        "Spring AI",
+        "Gemini API",
+        "PyTorch",
+        "TorchAudio"
+      ],
+      "context": "데이터 정합성과 AI 입력·출력의 처리 흐름을 설계했습니다."
+    },
+    {
+      "name": "Infrastructure",
+      "items": [
+        "AWS EC2",
+        "Docker",
+        "Google Cloud Storage",
+        "Git"
+      ],
+      "context": "서비스 운영과 컨테이너 구성, 미디어 관리를 수행했습니다."
+    },
+    {
+      "name": "Frontend",
+      "items": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "JavaScript"
+      ],
+      "context": "백엔드 결과를 사용자가 확인할 수 있는 화면으로 연결했습니다."
+    }
+  ],
+  "background": [
+    {
+      "type": "EDUCATION",
+      "title": "한성대학교",
+      "detail": "웹공학 · 응용AI 전공 / 재학",
+      "date": "2027.02 졸업 예정",
+      "note": "학점 3.95"
+    },
+    {
+      "type": "CERTIFICATION",
+      "title": "정보처리기사 · SQLD",
+      "detail": "취득",
+      "date": "2026.09.11",
+      "note": ""
+    },
+    {
+      "type": "AWARDS",
+      "title": "캡스톤디자인 작품발표회",
+      "detail": "CRUSH · 우수상 / FILLY · 작품우수상 / 음성 분류 · 최우수상",
+      "date": "2026학년도 1학기",
+      "note": "한성대학교 · 팀 수상"
+    },
+    {
+      "type": "ACTIVITY",
+      "title": "AI·SW 산학연계 해외연수",
+      "detail": "싱가포르 해외연수 프로그램 참여",
+      "date": "2025학년도 2학기",
+      "note": ""
+    }
+  ]
+}
